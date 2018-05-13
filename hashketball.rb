@@ -117,8 +117,6 @@ end
 
 def good_practices
   game_hash.each do |location, team_data|
-    
-    
       team_data.each do |attribute, data|
        
         data.each do |data_item|
