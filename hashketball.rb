@@ -130,6 +130,7 @@ def good_practices
     end
   end
 end
+good_practices
 
 
 
