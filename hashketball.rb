@@ -115,5 +115,90 @@ game_hash = {
   }
 end
 
+def num_points_scored(player_name)
+  game_hash.each do |location, team_data| 
+    team_data[:players].each do |player, data| 
+      if player == player_name
+        return data[:points] 
+      end 
+    end 
+  end 
+end
+  
+
+def shoe_size(player_name)
+  game_hash.each do |location, team_data| 
+    team_data[:players].each do |player, data| 
+      if player == player_name
+        return data[:shoe]
+      end 
+    end
+  end
+end
+
+def team_colors(team_name)
+  game_hash.each do |location, team_data| 
+    if team_data[:team_name] == team_name
+      return team_data[:colors]
+    end
+  end
+end
+
+def team_names
+  array = [] 
+  game_hash.each do |location, team_data|
+    array << team_data[:team_name]
+  end
+  array
+end
+
+
+def player_numbers(team_name) 
+  array = []
+  game_hash.each do |location, team_data|
+    if team_data[:team_name] == team_name
+      team_data[:players].each do |player, data| 
+        array << data[:number]
+      end
+    end
+  end
+  array
+end 
+
+
+def player_stats(player_name)
+  stats = {} 
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, data| 
+      if player == player_name
+        stats = data 
+      end
+    end
+  end
+  stats
+end
+
+
+def big_shoe_rebounds
+  player_shoe = nil 
+  biggest_shoe_size = nil 
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, data|
+      if (player_shoe == nil && biggest_shoe_size == nil) || data[:shoe] > biggest_shoe_size
+        player_shoe = player 
+        biggest_shoe_size = data[:shoe]
+      end
+    end
+  end
+  
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, data|
+      if player == player_shoe
+        return data[:rebounds]
+      end
+    end
+  end
+end
+ 
 
 
